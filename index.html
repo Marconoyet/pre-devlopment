@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dai+Banna+SIL:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pre Development</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="#" id="survey-form" class="form-label">
+        <div class="header-form">
+          <img
+            id="logo"
+            class="survey-logo"
+            src="https://pre-realestate.net/wp-content/uploads/2021/07/Asset-1.png"
+            alt="Pre Logo"
+          />
+          <div>
+            <h1 id="description">Pre Developments</h1>
+            <div class="description-form">Pre Form</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="activities" id="activities-label">Your Note </label>
+          <textarea
+            name="activities"
+            id="activities"
+            cols="50"
+            rows="3"
+            placeholder="Enter Note here..."
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="lead-label">Leads</label>
+          <details class="custom-select">
+            <summary class="radios">
+              <input
+                type="radio"
+                name="item"
+                class="title-select"
+                id="default"
+                title="Choose Lead"
+                checked
+              />
+              <input type="radio" name="item" id="item1" title="Item 1" />
+              <input type="radio" name="item" id="item2" title="Item 2" />
+              <input type="radio" name="item" id="item3" title="Item 3" />
+              <input type="radio" name="item" id="item4" title="Item 4" />
+              <input type="radio" name="item" id="item5" title="Item 5" />
+            </summary>
+
+            <ul class="lead-list"></ul>
+          </details>
+        </div>
+
+        <div>
+          <div class="header-section">
+            <label class="lead-label">Upload File</label>
+          </div>
+          <div class="drop-section">
+            <div class="col">
+              <div class="cloud-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="{1.5}"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                  />
+                </svg>
+              </div>
+              <button class="file-selector">Browse Files</button>
+              <input type="file" class="file-selector-input" multiple />
+            </div>
+            <div class="col">
+              <div class="drop-here">Drop Here</div>
+            </div>
+          </div>
+          <div class="list-section">
+            <div class="list-title">Uploaded Files</div>
+            <div class="list"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="submit">
+            <span class="submit-text">Submit</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="32"
+              height="32"
+              viewBox="0,0,256,256"
+              style="fill: #000000"
+            >
+              <g
+                fill="#ffffff"
+                fill-rule="nonzero"
+                stroke="none"
+                stroke-width="1"
+                stroke-linecap="butt"
+                stroke-linejoin="miter"
+                stroke-miterlimit="10"
+                stroke-dasharray=""
+                stroke-dashoffset="0"
+                font-family="none"
+                font-weight="none"
+                font-size="none"
+                text-anchor="none"
+                style="mix-blend-mode: normal"
+              >
+                <g transform="scale(8,8)">
+                  <path
+                    d="M26.07031,3.99609c-0.33594,0.01563 -0.65234,0.11328 -0.93359,0.22266h-0.00391c-0.28516,0.11328 -1.64062,0.68359 -3.69922,1.54688c-2.05859,0.86719 -4.73047,1.99219 -7.38281,3.10938c-5.29687,2.23047 -10.50391,4.42578 -10.50391,4.42578l0.0625,-0.02344c0,0 -0.35937,0.11719 -0.73437,0.375c-0.19141,0.125 -0.40234,0.29688 -0.58594,0.56641c-0.18359,0.26953 -0.33203,0.68359 -0.27734,1.10938c0.08984,0.72266 0.55859,1.15625 0.89453,1.39453c0.33984,0.24219 0.66406,0.35547 0.66406,0.35547h0.00781l4.88281,1.64453c0.21875,0.70313 1.48828,4.875 1.79297,5.83594c0.17969,0.57422 0.35547,0.93359 0.57422,1.20703c0.10547,0.14063 0.23047,0.25781 0.37891,0.35156c0.05859,0.03516 0.12109,0.0625 0.18359,0.08594c0.01953,0.01172 0.03906,0.01563 0.0625,0.01953l-0.05078,-0.01172c0.01563,0.00391 0.02734,0.01563 0.03906,0.01953c0.03906,0.01172 0.06641,0.01563 0.11719,0.02344c0.77344,0.23438 1.39453,-0.24609 1.39453,-0.24609l0.03516,-0.02734l2.88281,-2.625l4.83203,3.70703l0.10938,0.04688c1.00781,0.44141 2.02734,0.19531 2.56641,-0.23828c0.54297,-0.4375 0.75391,-0.99609 0.75391,-0.99609l0.03516,-0.08984l3.73438,-19.12891c0.10547,-0.47266 0.13281,-0.91406 0.01563,-1.34375c-0.11719,-0.42969 -0.41797,-0.83203 -0.78125,-1.04687c-0.36719,-0.21875 -0.73047,-0.28516 -1.06641,-0.26953zM25.96875,6.04688c-0.00391,0.0625 0.00781,0.05469 -0.01953,0.17578v0.01172l-3.69922,18.92969c-0.01562,0.02734 -0.04297,0.08594 -0.11719,0.14453c-0.07812,0.0625 -0.14062,0.10156 -0.46484,-0.02734l-5.91016,-4.53125l-3.57031,3.25391l0.75,-4.78906c0,0 9.25781,-8.62891 9.65625,-9c0.39844,-0.37109 0.26563,-0.44922 0.26563,-0.44922c0.02734,-0.45312 -0.60156,-0.13281 -0.60156,-0.13281l-12.17578,7.54297l-0.00391,-0.01953l-5.83594,-1.96484v-0.00391c-0.00391,0 -0.01172,-0.00391 -0.01562,-0.00391c0.00391,0 0.03125,-0.01172 0.03125,-0.01172l0.03125,-0.01562l0.03125,-0.01172c0,0 5.21094,-2.19531 10.50781,-4.42578c2.65234,-1.11719 5.32422,-2.24219 7.37891,-3.10937c2.05469,-0.86328 3.57422,-1.49609 3.66016,-1.53125c0.08203,-0.03125 0.04297,-0.03125 0.10156,-0.03125z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
