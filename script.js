@@ -1,5 +1,6 @@
-// script.js
-// Get elements
+/*******************************************
+ * DOM Selection
+ ********************************************/
 const dropdown = document.querySelector(".dropdown");
 const selectedOption = document.querySelector(".selected-option");
 const optionsList = document.querySelector(".options");
@@ -10,55 +11,69 @@ const browseButton = document.getElementById("browseButton");
 const fileInput = document.getElementById("fileInput");
 const sendData = document.querySelector(".submit");
 const ulElement = document.querySelector(".options");
+const searchEl = document.querySelector(".search");
 const leadEl = document.querySelector(".selected-option");
 const noteEl = document.querySelector(".note");
-
-// Data
+const clearBtn = document.querySelector(".clear");
+/*******************************************
+ * JS variables
+ ********************************************/
+// Out Data
 let fileData;
 let leadSelection;
 let note;
+let leadID;
 
+// in Data
 const optionsArray = [
   { name: "Option 1", leadId: "value1" },
   { name: "Option 2", leadId: "value2" },
   { name: "Option 3", leadId: "value3" },
 ];
 
-// Function to populate the <ul> element with options from the array
-function loadOptions() {
-  optionsArray.forEach((option) => {
-    const liElement = document.createElement("li");
-    liElement.textContent = option.name;
-    liElement.setAttribute("lead-id", option.leadId);
-    liElement.addEventListener("click", (event) => {
-      selectedOption.innerHTML = event.target.innerHTML;
-      const leadId = event.target.getAttribute("lead-id");
-      console.log(leadId);
-    });
-    ulElement.appendChild(liElement);
-  });
-}
-
-window.addEventListener("load", loadOptions);
-
+/*******************************************
+ * JS EVENTS
+ ********************************************/
 // Call the function to load options on page load
+window.addEventListener("load", () => {
+  loadOptions(optionsArray);
+});
 
 // Toggle dropdown open/close
 dropdown.addEventListener("click", () => {
   dropdown.classList.toggle("open");
 });
 
-// Handle option selection
+searchEl.addEventListener("input", handleChangeSearch);
 
+// click to file input
 browseButton.addEventListener("click", openFileInput);
+
+// control input of file
 fileInput.addEventListener("change", handleFileSelect);
 
 // Submit button
 sendData.addEventListener("click", (event) => {
   event.preventDefault();
-  leadSelection = leadEl.innerHTML;
   note = noteEl.value;
-  console.log("Hello", note, leadSelection);
+  leadSelection = searchEl.value;
+  leadID = searchEl.getAttribute("lead-id");
+  if (leadSelection === "" && leadID === null) {
+    console.log("Hello", note, leadID, leadSelection);
+  } else if (leadSelection !== "" && leadID === null) {
+    const filteredOptions = filterOptionsByLetter(leadSelection);
+    if (filteredOptions.length === 1) {
+      leadID = filteredOptions[0].leadId;
+      console.log("Hello", note, leadID, leadSelection);
+    } else {
+    }
+  }
+});
+
+clearBtn.addEventListener("click", (event) => {
+  searchEl.setAttribute("lead-id", null);
+  searchEl.value = "";
+  dropdown.classList.remove("open");
 });
 
 // Close dropdown when clicking outside
@@ -68,7 +83,31 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// Helper Functions
+/*******************************************
+ * Helper Functions
+ ********************************************/
+// Function to populate the <ul> element with options from the array
+function loadOptions(options) {
+  ulElement.innerHTML = ``;
+  options.forEach((option) => {
+    const liElement = document.createElement("li");
+    liElement.textContent = option.name;
+    liElement.setAttribute("lead-id", option.leadId);
+    liElement.addEventListener("click", (event) => {
+      searchEl.value = event.target.innerHTML;
+      const leadId = event.target.getAttribute("lead-id");
+      searchEl.setAttribute("lead-id", leadId);
+    });
+    ulElement.appendChild(liElement);
+  });
+}
+
+function handleChangeSearch(event) {
+  dropdown.classList.add("open");
+  const filteredOptions = filterOptionsByLetter(event.target.value);
+  loadOptions(filteredOptions);
+}
+
 function openFileInput() {
   document.getElementById("fileInput").click();
 }
@@ -86,7 +125,7 @@ function typeValidation(type) {
   }
 }
 
-function handleFileSelect(event) {
+function handleFileSelect() {
   [...fileInput.files].forEach((file) => {
     if (typeValidation(file.type)) {
       uploadFile(file);
@@ -126,6 +165,17 @@ function uploadFile(file) {
   listContainer.innerHTML = "";
   listContainer.prepend(li);
 }
+
+function sendDataAction(data) {}
+
+// filter letter
+function filterOptionsByLetter(letter) {
+  const filteredOptions = optionsArray.filter((option) =>
+    option.name.toLowerCase().includes(letter.toLowerCase())
+  );
+  return filteredOptions;
+}
+
 // find icon for file
 function iconSelector(type) {
   if (type.includes("image")) {

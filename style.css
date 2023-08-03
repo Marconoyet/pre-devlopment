@@ -224,6 +224,12 @@ textarea:focus-visible {
   margin-bottom: 0.7rem;
 }
 
+.search {
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
 .dropdown {
   display: inline-block;
   position: relative;
@@ -294,6 +300,28 @@ textarea:focus-visible {
 
 .open .arrow {
   transform: translateY(-50%) rotate(45deg);
+}
+
+.clear {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  color: #e03131;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin-bottom: 1.2rem;
+  border-radius: 100px;
+  transition: all 0.3s;
+}
+
+.clear path {
+  border-radius: 100px;
+}
+
+.clear:hover {
+  color: #c92a2a;
+  background-color: #ffe3e3;
 }
 
 .file-input {
