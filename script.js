@@ -9,12 +9,30 @@ const listContainer = document.querySelector(".list");
 const browseButton = document.getElementById("browseButton");
 const fileInput = document.getElementById("fileInput");
 const sendData = document.querySelector(".submit");
+const ulElement = document.querySelector(".options");
 const leadEl = document.querySelector(".selected-option");
 const noteEl = document.querySelector(".note");
 
+// Data
 let fileData;
 let leadSelection;
 let note;
+
+const optionsArray = ["Option 1", "Option 2", "Option 3"];
+
+// Function to populate the <ul> element with options from the array
+function loadOptions() {
+  optionsArray.forEach((option) => {
+    const liElement = document.createElement("li");
+    liElement.textContent = option;
+    ulElement.appendChild(liElement);
+  });
+}
+
+window.addEventListener("load", loadOptions);
+
+// Call the function to load options on page load
+
 // Toggle dropdown open/close
 dropdown.addEventListener("click", () => {
   dropdown.classList.toggle("open");
