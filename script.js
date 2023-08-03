@@ -18,15 +18,22 @@ let fileData;
 let leadSelection;
 let note;
 
-const optionsArray = ["Option 1", "Option 2", "Option 3"];
+const optionsArray = [
+  { name: "Option 1", leadId: "value1" },
+  { name: "Option 2", leadId: "value2" },
+  { name: "Option 3", leadId: "value3" },
+];
 
 // Function to populate the <ul> element with options from the array
 function loadOptions() {
   optionsArray.forEach((option) => {
     const liElement = document.createElement("li");
-    liElement.textContent = option;
+    liElement.textContent = option.name;
+    liElement.setAttribute("lead-id", option.leadId);
     liElement.addEventListener("click", (event) => {
       selectedOption.innerHTML = event.target.innerHTML;
+      const leadId = event.target.getAttribute("lead-id");
+      console.log(leadId);
     });
     ulElement.appendChild(liElement);
   });
