@@ -1,45 +1,57 @@
-const dropArea = document.querySelector(".drop-section");
+// script.js
+// Get elements
+const dropdown = document.querySelector(".dropdown");
+const selectedOption = document.querySelector(".selected-option");
+const optionsList = document.querySelector(".options");
+const options = document.querySelectorAll(".options li");
 const listSection = document.querySelector(".list-section");
 const listContainer = document.querySelector(".list");
-const fileSelector = document.querySelector(".file-selector");
-const fileSelectorInput = document.querySelector(".file-selector-input");
-const listItem = document.createElement("li");
-const label = document.createElement("label");
-const input = document.createElement("input");
+const browseButton = document.getElementById("browseButton");
+const fileInput = document.getElementById("fileInput");
+const sendData = document.querySelector(".submit");
+const leadEl = document.querySelector(".selected-option");
+const noteEl = document.querySelector(".note");
 
-function generateDynamicChoices() {
-  const choices = ["Choice 1", "Choice 2", "Choice 3", "Choice 4", "Choice 5"];
+let fileData;
+let leadSelection;
+let note;
+// Toggle dropdown open/close
+dropdown.addEventListener("click", () => {
+  dropdown.classList.toggle("open");
+});
 
-  const listContainer = document.querySelector(".lead-list");
-
-  choices.forEach((choice, index) => {
-    const listItem = document.createElement("li");
-    listItem.innerHTML = `
-        <label class="list-label" for="item${index + 1}">
-          ${choice}
-        </label>
-      `;
-    listContainer.appendChild(listItem);
+// Handle option selection
+options.forEach((option) => {
+  option.addEventListener("click", (event) => {
+    selectedOption.innerHTML = event.target.innerHTML;
   });
+});
+
+browseButton.addEventListener("click", openFileInput);
+fileInput.addEventListener("change", handleFileSelect);
+
+// Submit button
+sendData.addEventListener("click", (event) => {
+  event.preventDefault();
+  leadSelection = leadEl.innerHTML;
+  note = noteEl.value;
+  console.log("Hello", note, leadSelection);
+});
+
+// Close dropdown when clicking outside
+document.addEventListener("click", (event) => {
+  if (!dropdown.contains(event.target)) {
+    dropdown.classList.remove("open");
+  }
+});
+
+// Helper Functions
+function openFileInput() {
+  document.getElementById("fileInput").click();
 }
 
-// Call the function to generate dynamic choices when the document is loaded
-document.addEventListener("DOMContentLoaded", generateDynamicChoices);
-// upload files with browse button
-fileSelector.onclick = () => fileSelectorInput.click();
-fileSelectorInput.onchange = () => {
-  [...fileSelectorInput.files].forEach((file) => {
-    if (typeValidation(file.type)) {
-      uploadFile(file);
-    }
-  });
-};
-
-// check the file type
 function typeValidation(type) {
-  console.log(type);
-
-  var splitType = type.split("/")[0];
+  let splitType = type.split("/")[0];
   if (
     type == "application/pdf" ||
     splitType == "image" ||
@@ -51,23 +63,40 @@ function typeValidation(type) {
   }
 }
 
-// upload file function
+function handleFileSelect(event) {
+  [...fileInput.files].forEach((file) => {
+    if (typeValidation(file.type)) {
+      uploadFile(file);
+    } else {
+      listSection.style.display = "block";
+      listContainer.innerHTML = `
+      <div class="upload-card" style="margin-top:1rem">
+        <p style="color:red">Invalid file Format</p>
+      </div>
+      `;
+    }
+  });
+}
+
 function uploadFile(file) {
+  fileData = file;
   listSection.style.display = "block";
   var li = document.createElement("li");
   li.classList.add("in-prog");
   li.innerHTML = `
         <div class="upload-card">
+        
+            <div class = "flex-center">
             ${iconSelector(file.type)}
-            <div class="col">
+            <div class="file-info">
                 <div class="file-name">
                     <div class="name">${file.name}</div>
                 </div>
-             
+
                 <div class="file-size">${(file.size / (1024 * 1024)).toFixed(
                   2
                 )} MB</div>
-            </div>
+            </div></div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="green" class="tick" height="20" width="20"><path d="m8.229 14.438-3.896-3.917 1.438-1.438 2.458 2.459 6-6L15.667 7Z"/></svg>
         </div>
     `;
