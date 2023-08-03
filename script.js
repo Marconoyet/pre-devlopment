@@ -25,6 +25,9 @@ function loadOptions() {
   optionsArray.forEach((option) => {
     const liElement = document.createElement("li");
     liElement.textContent = option;
+    liElement.addEventListener("click", (event) => {
+      selectedOption.innerHTML = event.target.innerHTML;
+    });
     ulElement.appendChild(liElement);
   });
 }
@@ -39,11 +42,6 @@ dropdown.addEventListener("click", () => {
 });
 
 // Handle option selection
-options.forEach((option) => {
-  option.addEventListener("click", (event) => {
-    selectedOption.innerHTML = event.target.innerHTML;
-  });
-});
 
 browseButton.addEventListener("click", openFileInput);
 fileInput.addEventListener("change", handleFileSelect);
