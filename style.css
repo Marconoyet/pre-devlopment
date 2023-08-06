@@ -353,17 +353,6 @@ input[type="file"] {
   cursor: pointer;
 }
 
-#fileName {
-  margin-top: 10px;
-}
-
-#imageContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 30px;
-}
-
 .upload {
   color: white;
   background-color: var(--color-primary);

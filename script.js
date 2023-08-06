@@ -19,10 +19,10 @@ const clearBtn = document.querySelector(".clear");
  * JS variables
  ********************************************/
 // Out Data
-let fileData;
 let leadSelection;
 let note;
 let leadID;
+const formData = new FormData();
 
 // in Data
 const optionsArray = [
@@ -71,6 +71,7 @@ sendData.addEventListener("click", (event) => {
 });
 
 clearBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   searchEl.setAttribute("lead-id", null);
   searchEl.value = "";
   dropdown.classList.remove("open");
@@ -108,7 +109,8 @@ function handleChangeSearch(event) {
   loadOptions(filteredOptions);
 }
 
-function openFileInput() {
+function openFileInput(event) {
+  event.preventDefault();
   document.getElementById("fileInput").click();
 }
 
@@ -141,7 +143,7 @@ function handleFileSelect() {
 }
 
 function uploadFile(file) {
-  fileData = file;
+  formData.append("file", file);
   listSection.style.display = "block";
   var li = document.createElement("li");
   li.classList.add("in-prog");
